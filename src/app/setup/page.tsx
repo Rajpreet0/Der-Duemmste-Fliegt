@@ -62,7 +62,7 @@ const Setup = () => {
                             type="number"
                             disabled
                             value={playerCount}
-                            onChange={(e) => setPlayerCount(playerCount)}
+                            onChange={() => setPlayerCount(playerCount)}
                             className="w-[100px] h-[100px] bg-blue/50 border-2 border-blue/20 text-center rounded-lg text-white text-3xl"/>
                         <div className="flex flex-col gap-4">
                             <div
