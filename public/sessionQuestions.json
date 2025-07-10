@@ -1,102 +1,102 @@
 [
   {
-    "question": "In welchem Jahr fand die erste Olympiade der Neuzeit statt?",
-    "answer": "1896"
+    "question": "Welches Land hat die größte Bevölkerungszahl?",
+    "answer": "China"
   },
   {
-    "question": "Wer hat den Roman Moby-Dick geschrieben?",
-    "answer": "Herman Melville"
+    "question": "Welcher Planet ist der nächste zur Sonne?",
+    "answer": "Merkur"
   },
   {
-    "question": "Was ist die Hauptstadt von Australien?",
-    "answer": "Canberra"
+    "question": "Welcher Fluss ist der längste auf der Welt?",
+    "answer": "Der Nil"
   },
   {
-    "question": "Wer hat die Mona Lisa gemalt?",
-    "answer": "Leonardo da Vinci"
+    "question": "Welcher Schriftsteller schrieb 'Die Göttliche Komödie'?",
+    "answer": "Dante Alighieri"
+  },
+  {
+    "question": "In welchem Jahr begann der Erste Weltkrieg?",
+    "answer": "1914"
+  },
+  {
+    "question": "Wer malte das Gemälde 'Die Nachtwache'?",
+    "answer": "Rembrandt van Rijn"
+  },
+  {
+    "question": "In welchem Jahr wurde die Berliner Mauer gebaut?",
+    "answer": "1961"
   },
   {
     "question": "Wie viele Bundesländer hat Deutschland?",
     "answer": "16"
   },
   {
-    "question": "Wer hat die Relativitätstheorie formuliert?",
-    "answer": "Albert Einstein"
-  },
-  {
-    "question": "In welchem Land liegt die Stadt Casablanca?",
-    "answer": "Marokko"
+    "question": "Welcher Künstler ist bekannt für die Skulptur 'Der Denker'?",
+    "answer": "Auguste Rodin"
   },
   {
     "question": "Welche Farbe hat ein Smaragd?",
     "answer": "Grün"
   },
   {
-    "question": "Wer war der erste Mensch auf dem Mond?",
-    "answer": "Neil Armstrong"
+    "question": "Was ist das tiefste Meer auf der Erde?",
+    "answer": "Der Pazifik"
   },
   {
-    "question": "Was ist die größte Stadt der Welt nach Bevölkerung?",
-    "answer": "Tokyo"
+    "question": "In welcher Stadt steht die Freiheitsstatue?",
+    "answer": "New York"
   },
   {
-    "question": "Wer hat die Vier Jahreszeiten komponiert?",
-    "answer": "Antonio Vivaldi"
+    "question": "Welches Tier ist das größte auf der Erde?",
+    "answer": "Der Blauwal"
   },
   {
-    "question": "Wer ist der Autor von 'Das Bildnis des Dorian Gray'?",
-    "answer": "Oscar Wilde"
+    "question": "Welcher Geschmack wird umami genannt?",
+    "answer": "Herzhaft"
   },
   {
-    "question": "Was ist der längste Fluss der Welt?",
-    "answer": "Der Nil"
+    "question": "Wer komponierte die Oper 'Die Zauberflöte'?",
+    "answer": "Wolfgang Amadeus Mozart"
   },
   {
-    "question": "Wer entdeckte Amerika?",
-    "answer": "Christoph Kolumbus"
+    "question": "In welchem Land befindet sich der höchste Berg der Welt, der Mount Everest?",
+    "answer": "Nepal"
   },
   {
-    "question": "Wer hat die Weltliteratur 'Faust' geschrieben?",
-    "answer": "Johann Wolfgang von Goethe"
+    "question": "Welcher US-Präsident wurde 1963 ermordet?",
+    "answer": "John F. Kennedy"
   },
   {
-    "question": "Was ist der größte Planet in unserem Sonnensystem?",
-    "answer": "Jupiter"
+    "question": "Was ist das chemische Symbol für Eisen?",
+    "answer": "Fe"
   },
   {
-    "question": "In welchem Jahr fiel die Berliner Mauer?",
-    "answer": "1989"
+    "question": "Wie heißt der Hauptcharakter in 'Der Herr der Ringe'?",
+    "answer": "Frodo Beutlin"
   },
   {
-    "question": "Was ist das chemische Symbol für Gold?",
-    "answer": "Au"
+    "question": "Welcher griechische Gott war der Göttervater?",
+    "answer": "Zeus"
   },
   {
-    "question": "Wer hat das Buch 'Der alte Mann und das Meer' geschrieben?",
-    "answer": "Ernest Hemingway"
+    "question": "Was ist der kleinste Planet in unserem Sonnensystem?",
+    "answer": "Merkur"
   },
   {
-    "question": "Wer ist der bekannteste Physiker des 21. Jahrhunderts?",
-    "answer": "Stephen Hawking"
+    "question": "Wer ist der Schöpfer der Detektivfigur Sherlock Holmes?",
+    "answer": "Arthur Conan Doyle"
   },
   {
-    "question": "Welcher Komponist schrieb die Musik für die 'Star Wars' Filme?",
-    "answer": "John Williams"
+    "question": "In welcher Stadt befindet sich der Louvre?",
+    "answer": "Paris"
   },
   {
-    "question": "Was ist die schnellste Landtier der Welt?",
-    "answer": "Gepard"
+    "question": "Wie viele Tasten hat ein klassisches Klavier?",
+    "answer": "88"
   },
   {
-    "question": "Welche Sprache hat die meisten Muttersprachler weltweit?",
-    "answer": "Mandarin Chinesisch"
-  },
-  {
-    "question": "Wer malte 'Der Schrei'?",
-    "answer": "Edvard Munch"
-  },
-  {
-    "question": "Wer hat das iPhone erfunden?",
-    "answer": "Apple"
+    "question": "Was ist die Hauptstadt von Kanada?",
+    "answer": "Ottawa"
   }
 ]
