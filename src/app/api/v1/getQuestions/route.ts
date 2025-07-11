@@ -1,7 +1,7 @@
-import { writeFile } from 'fs/promises';
+//import { writeFile } from 'fs/promises';
 import { NextResponse } from 'next/server';
 import OpenAI from 'openai';
-import path from 'path';
+//import path from 'path';
 
 const client = new OpenAI({
     apiKey: process.env.OPEN_API_KEY,
@@ -63,8 +63,8 @@ export async function POST() {
         if (responseMessage.tool_calls && responseMessage.tool_calls[0].function.arguments) {
             const parsed = JSON.parse(responseMessage.tool_calls[0].function.arguments);
 
-            const filePath = path.join(process.cwd(), 'public', 'sessionQuestions.json');
-            await writeFile(filePath, JSON.stringify(parsed.questions, null, 2), 'utf-8');
+           /* const filePath = path.join(process.cwd(), 'public', 'sessionQuestions.json');
+            await writeFile(filePath, JSON.stringify(parsed.questions, null, 2), 'utf-8'); */
             
             return NextResponse.json({ questions: parsed.questions });
         } else {
