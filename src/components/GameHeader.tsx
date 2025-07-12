@@ -2,15 +2,17 @@ import Image from "next/image";
 import Logo from "../../public/images/Logo.png";
 import { Heart, Settings, SkipForward } from "lucide-react";
 import TooltipComponent from "./TooltipComponent";
+import SettingsPopover from "./SettingsPopover";
 
 interface GameHeaderProps {
   isSetup?: boolean;
   currentPlayer?: string;
   currentPlayerLives?: number;
   onSkip?: () => void;
+  onSave?: (timer: number, lives: number) => void;
 }
 
-const GameHeader: React.FC<GameHeaderProps> = ({isSetup, currentPlayer, currentPlayerLives, onSkip}) => {
+const GameHeader: React.FC<GameHeaderProps> = ({isSetup, currentPlayer, currentPlayerLives, onSkip, onSave}) => {
   return (
     <div className="w-full flex flex-row items-center justify-between p-2">
       <Image
@@ -40,9 +42,11 @@ const GameHeader: React.FC<GameHeaderProps> = ({isSetup, currentPlayer, currentP
           </TooltipComponent>
         )}
           <TooltipComponent content="Einstellungen">
-            <div className="bg-blue p-2 rounded-full text-white cursor-pointer hover:scale-105 transition-all">
-              <Settings/>
-            </div>
+            <SettingsPopover isGame={!isSetup} onSave={onSave}>
+              <div className="bg-blue p-2 rounded-full text-white cursor-pointer hover:scale-105 transition-all">
+                <Settings/>
+              </div>
+            </SettingsPopover>
           </TooltipComponent>
       </div>
     </div>
