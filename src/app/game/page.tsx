@@ -84,17 +84,18 @@ const Game = () => {
       return playerLives.filter(lives => lives > 0).length;
     };
 
-    const getWinnerName = () => {
-      const aliveIndex = playerLives.findIndex(lives => lives > 0);
-      return players[aliveIndex];
-    }
 
     // Navigation
     const nextPlayer = () => {
 
       if (getAlivePlayersCount() === 1) {
-        const winner = getWinnerName()
-        router.push(`/result?winner=${encodeURIComponent(winner)}`);
+        const finalRanking = players.map((name, index) => ({
+          name,
+          lives: playerLives[index],
+        })).sort((a, b) => b.lives - a.lives);
+
+        const encoded = encodeURIComponent(JSON.stringify(finalRanking));
+        router.push(`/result?ranking=${encoded}`);
         return;
       }
 
