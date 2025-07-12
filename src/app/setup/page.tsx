@@ -10,6 +10,9 @@ const Setup = () => {
     const [step, setStep] = useState(1);
     const [playerCount, setPlayerCount] = useState<number>(0);
     const [playerNames, setPlayerNames] = useState<string[]>([]);
+    const [timer, setTimer] = useState(15);
+    const [lives, setLives] = useState(3);
+
     const router = useRouter();
 
 
@@ -47,12 +50,15 @@ const Setup = () => {
             return;
         }
 
-        router.push(`/game?players=${encodeURIComponent(JSON.stringify(filledNames))}`);
+       router.push(`/game?players=${encodeURIComponent(JSON.stringify(filledNames))}&timer=${timer}&lives=${lives}`);
     }
 
   return (
     <div className="min-h-screen w-full flex flex-col">
-        <GameHeader isSetup/>
+        <GameHeader isSetup onSave={(newTimer, newLives) => {
+            setTimer(newTimer);
+            setLives(newLives);
+        }}/>
         <div className="flex-1 flex flex-col items-center justify-center">
             {step === 1 && (
                 <>

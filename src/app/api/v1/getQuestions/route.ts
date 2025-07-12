@@ -53,7 +53,7 @@ export async function POST() {
             },
             {
             role: "user",
-            content: "Erstelle 25 verschiedene Trivia-Fragen mit korrekten Antworten auf Deutsch für ein Quizspiel."
+            content: "Erstelle 9 verschiedene Trivia-Fragen mit korrekten Antworten auf Deutsch für ein Quizspiel."
             }
         ]
         });

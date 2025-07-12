@@ -11,6 +11,8 @@ const Game = () => {
     const [players, setPlayers] = useState<string[]>([]);
     const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
     const [playerLives, setPlayerLives] = useState<number[]>([]);
+    const [initialTimer, setInitialTimer] = useState(15);
+
 
     const [secondsLeft, setSecondsLeft] = useState(15);
     const [showAnswer, setShowAnswer] = useState(false);
@@ -24,10 +26,19 @@ const Game = () => {
     useEffect(() => {
       const searchParams = new URLSearchParams(window.location.search);
       const playersParam = searchParams.get("players");
+      const timerParam = searchParams.get("timer");
+      const livesParam = searchParams.get("lives");
+
+      const parsedTimer = timerParam ? parseInt(timerParam) : 15;
+      const parsedLives = livesParam ? parseInt(livesParam) : 3;
+
+      setInitialTimer(parsedTimer);
+      setSecondsLeft(parsedTimer);
+
       if (playersParam) {
         const parsedPlayers = JSON.parse(playersParam);
         setPlayers(parsedPlayers);
-        setPlayerLives(new Array(parsedPlayers.length).fill(3));
+        setPlayerLives(new Array(parsedPlayers.length).fill(parsedLives));
       }
     }, []);
 
@@ -73,7 +84,7 @@ const Game = () => {
           const data = await res.json();
           setSessionQuestions(data.questions);
           setCurrentQuestionIndex(0); 
-          setSecondsLeft(10);
+          setSecondsLeft(initialTimer);
           setShowAnswer(false);
       } catch (error) {
         console.log(error);
@@ -122,7 +133,7 @@ const Game = () => {
         }
       } else {
         setCurrentQuestionIndex(nextIndex);
-        setSecondsLeft(10);
+        setSecondsLeft(initialTimer);
         setShowAnswer(false);
       }
     };
@@ -139,7 +150,7 @@ const Game = () => {
     };
 
     const handleSkip = () => {
-      setSecondsLeft(10);
+      setSecondsLeft(initialTimer);
       setShowAnswer(false);
       nextQuestion(); // skip question, stay on same player
     };
@@ -161,7 +172,11 @@ const Game = () => {
       <GameHeader 
         onSkip={handleSkip}
         currentPlayer={players[currentPlayerIndex]} 
-        currentPlayerLives={playerLives[currentPlayerIndex]}/>
+        currentPlayerLives={playerLives[currentPlayerIndex]}
+        isSetup={false}
+        onSave={(timer) => {
+          setInitialTimer(timer);
+        }}/>
       <p className="mt-6 text-6xl tracking-widest text-red">{secondsLeft}</p>
       <div className="flex-1 flex flex-col items-center justify-center ">
         {currentQuestion ? (
