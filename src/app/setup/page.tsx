@@ -4,6 +4,7 @@ import GameHeader from "@/components/GameHeader";
 import { Minus, Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from "sonner";
 
 const Setup = () => {
     
@@ -12,6 +13,7 @@ const Setup = () => {
     const [playerNames, setPlayerNames] = useState<string[]>([]);
     const [timer, setTimer] = useState(15);
     const [lives, setLives] = useState(3);
+    const [powerUpsEnabled, setPowerUpsEnabled] = useState(false);
 
     const router = useRouter();
 
@@ -30,7 +32,7 @@ const Setup = () => {
 
     const handlePlayerCountSubmit = () => {
         if (playerCount <= 0 || playerCount > 8) {
-            alert("Bitte gib eine gültige Anzahl an Spielern ein (0-8)")
+            toast.warning("Bitte gib eine gültige Anzahl an Spielern ein (0-8)")
             return;
         }
         setPlayerNames(Array(playerCount).fill(""))
@@ -46,19 +48,24 @@ const Setup = () => {
     const startGame = () => {
         const filledNames = playerNames.filter((name) => name.trim() !== "");
         if (filledNames.length !== playerCount) {
-            alert("Bitte alle Spielernamen ausfüllen");
+            toast.warning("Bitte alle Spielernamen ausfüllen");
             return;
         }
 
-       router.push(`/game?players=${encodeURIComponent(JSON.stringify(filledNames))}&timer=${timer}&lives=${lives}`);
+       router.push(`/game?players=${encodeURIComponent(JSON.stringify(filledNames))}&timer=${timer}&lives=${lives}&powerUps=${powerUpsEnabled}`);
     }
 
   return (
     <div className="min-h-screen w-full flex flex-col">
-        <GameHeader isSetup onSave={(newTimer, newLives) => {
-            setTimer(newTimer);
-            setLives(newLives);
-        }}/>
+        <GameHeader 
+            isSetup 
+            onSave={(newTimer, newLives) => {
+                setTimer(newTimer);
+                setLives(newLives);
+            }}
+            powerUpsEnabled={powerUpsEnabled}
+            setPowerUpsEnabled={setPowerUpsEnabled}
+        />
         <div className="flex-1 flex flex-col items-center justify-center">
             {step === 1 && (
                 <>

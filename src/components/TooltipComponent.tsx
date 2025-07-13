@@ -8,7 +8,7 @@ interface TooltipComponentProps {
 const TooltipComponent: React.FC<TooltipComponentProps> = ({content, children}) => {
   return (
     <Tooltip>
-        <TooltipTrigger>
+        <TooltipTrigger asChild>
             {children}
         </TooltipTrigger>
         <TooltipContent className="tracking-wider">
