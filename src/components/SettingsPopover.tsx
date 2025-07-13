@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react"
 import { toast } from "sonner";
 import { Switch } from "./ui/switch";
+import { DropdownMenu, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuContent } from "./ui/dropdown-menu";
 
 interface SettingsPopoverProps {
     children: React.ReactNode;
@@ -22,6 +23,15 @@ const SettingsPopover: React.FC<SettingsPopoverProps> = ({children, isGame, onSa
     const [timerValue, setTimerValue] = useState(15);
     const [livesValue, setLivesValue] = useState(3);
     const router = useRouter();
+    
+    const categories = ["Allgemeinwissen", "Sport", "Wissenschaft", "Geschichte", "Film&Musik"]
+    const [selectedCategory, setSelectedCategory] = useState("Allgemeinwissen");
+
+    const difficulty = ["Leicht", "Medium", "Hard"]
+    const [selectedDiffculty, setSelectedDiffculty] = useState("Medium");
+
+    const modus = ["Klassisch", "Quiz", "Level-Up", "Knockdown"];
+    const [selectedModus, setSelectedModus] = useState("Quiz");
 
     const increment = (value: number, setter: React.Dispatch<React.SetStateAction<number>>) => {
         setter(prev => prev + 1);
@@ -42,7 +52,7 @@ const SettingsPopover: React.FC<SettingsPopoverProps> = ({children, isGame, onSa
     <Popover>
         <PopoverTrigger asChild>{children}</PopoverTrigger>
         <PopoverContent>
-            <div className="w-full flex flex-col items-center justify-center p-2 gap-4">
+            <div className="w-full flex flex-col items-center justify-center p-2 gap-4 ">
                 {/* TIMER */}
                 <div className="w-full flex items-center justify-between">
                     <p className="text-xl tracking-wider">Timer</p>
@@ -75,6 +85,81 @@ const SettingsPopover: React.FC<SettingsPopoverProps> = ({children, isGame, onSa
                     </div>
                 </div>
 
+
+
+                {/* CATEGORY */}
+                <div className="w-full flex items-center justify-between">
+                    <p className="text-xl tracking-wider">Kategorie</p>
+                    <div className="flex items-center gap-2">
+                        <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <button
+                                    className="p-2 bg-blue text-white rounded-md cursor-pointer tracking-wider"
+                                >{selectedCategory}</button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent className="w-56">
+                                {categories.map((category) => (
+                                    <DropdownMenuItem
+                                        key={category}
+                                        onClick={() => setSelectedCategory(category)}
+                                        className={selectedCategory === category ? "bg-blue text-white" : ""}>
+                                            {category}
+                                    </DropdownMenuItem>
+                                ))}
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                    </div>
+                </div>
+
+
+                {/* DIFFICULTY */}
+                <div className="w-full flex items-center justify-between">
+                    <p className="text-xl tracking-wider">Schwierigkeit</p>
+                    <div className="flex items-center gap-2">
+                        <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <button
+                                    className="p-2 bg-blue text-white rounded-md cursor-pointer  tracking-wider"
+                                >{selectedDiffculty}</button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent className="w-56">
+                                {difficulty.map((diffcult) => (
+                                    <DropdownMenuItem
+                                        key={diffcult}
+                                        onClick={() => setSelectedDiffculty(diffcult)}
+                                        className={selectedDiffculty === diffcult ? "bg-blue text-white" : ""}>
+                                            {diffcult}
+                                    </DropdownMenuItem>
+                                ))}
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                    </div>
+                </div>
+
+                {/* MODUS */}
+                <div className="w-full flex items-center justify-between">
+                    <p className="text-xl tracking-wider">Modus</p>
+                    <div className="flex items-center gap-2">
+                        <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <button
+                                    className="p-2 bg-blue text-white rounded-md cursor-pointer tracking-wider"
+                                >{selectedModus}</button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent className="w-56">
+                                {modus.map((modi) => (
+                                    <DropdownMenuItem
+                                        key={modi}
+                                        onClick={() => setSelectedModus(modi)}
+                                        className={selectedModus === modi ? "bg-blue text-white" : ""}>
+                                            {modi}
+                                    </DropdownMenuItem>
+                                ))}
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                    </div>
+                </div>
+
                 {/* SWITCH */}
                 <div className="w-full flex items-center justify-between">
                     <p className="text-xl tracking-wider">Power-Ups</p>
@@ -85,10 +170,6 @@ const SettingsPopover: React.FC<SettingsPopoverProps> = ({children, isGame, onSa
                             className="cursor-pointer"/>
                     </div>
                 </div>
-
-                {/* CATEGORY */}
-                {/* DIFFICULTY */}
-                {/* MODUS */}
             
             {isGame ? (
              <button
