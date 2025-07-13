@@ -3,6 +3,7 @@ import Image from "next/image";
 import Logo from "../../public/images/Logo.png";
 import { Play } from "lucide-react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function Home() {
 
@@ -12,14 +13,16 @@ export default function Home() {
     <div className="relative min-h-screen w-full flex items-center justify-center  ">
 
       <div className="absolute top-8 left-1/2 transform -translate-x-1/2">
-        <Image
-          src={Logo}
-          alt="Logo"
-          height={200}
-          width={200}
-          unoptimized
-          priority
-        />
+        <Link href="/">
+          <Image
+            src={Logo}
+            alt="Logo"
+            height={200}
+            width={200}
+            unoptimized
+            priority
+          />
+        </Link>
       </div>
       
       <div>

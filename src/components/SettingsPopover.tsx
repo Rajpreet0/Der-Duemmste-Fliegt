@@ -7,14 +7,18 @@ import {
 import { Minus, Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react"
+import { toast } from "sonner";
+import { Switch } from "./ui/switch";
 
 interface SettingsPopoverProps {
     children: React.ReactNode;
     isGame: boolean;
     onSave?: (timer: number, lives: number) => void;
+    powerUpsEnabled?: boolean;
+    setPowerUpsEnabled?: (enabled: boolean) => void;
 }
 
-const SettingsPopover: React.FC<SettingsPopoverProps> = ({children, isGame, onSave}) => {
+const SettingsPopover: React.FC<SettingsPopoverProps> = ({children, isGame, onSave, powerUpsEnabled, setPowerUpsEnabled}) => {
     const [timerValue, setTimerValue] = useState(15);
     const [livesValue, setLivesValue] = useState(3);
     const router = useRouter();
@@ -30,13 +34,13 @@ const SettingsPopover: React.FC<SettingsPopoverProps> = ({children, isGame, onSa
     const handleSave = () => {
         if (onSave) {
             onSave(timerValue, livesValue);
-            alert("Saved");
+            toast.success("Saved");
             return;
         }
     }
   return (
     <Popover>
-        <PopoverTrigger>{children}</PopoverTrigger>
+        <PopoverTrigger asChild>{children}</PopoverTrigger>
         <PopoverContent>
             <div className="w-full flex flex-col items-center justify-center p-2 gap-4">
                 {/* TIMER */}
@@ -71,6 +75,21 @@ const SettingsPopover: React.FC<SettingsPopoverProps> = ({children, isGame, onSa
                     </div>
                 </div>
 
+                {/* SWITCH */}
+                <div className="w-full flex items-center justify-between">
+                    <p className="text-xl tracking-wider">Power-Ups</p>
+                    <div className="flex items-center gap-2">
+                        <Switch
+                            checked={powerUpsEnabled}
+                            onCheckedChange={(checked) => setPowerUpsEnabled?.(checked)} 
+                            className="cursor-pointer"/>
+                    </div>
+                </div>
+
+                {/* CATEGORY */}
+                {/* DIFFICULTY */}
+                {/* MODUS */}
+            
             {isGame ? (
              <button
                 onClick={() => router.push("/")}

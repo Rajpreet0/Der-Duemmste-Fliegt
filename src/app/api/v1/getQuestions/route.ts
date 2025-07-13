@@ -1,7 +1,5 @@
-//import { writeFile } from 'fs/promises';
 import { NextResponse } from 'next/server';
 import OpenAI from 'openai';
-//import path from 'path';
 
 const client = new OpenAI({
     apiKey: process.env.OPEN_API_KEY,
@@ -53,7 +51,7 @@ export async function POST() {
             },
             {
             role: "user",
-            content: "Erstelle 9 verschiedene Trivia-Fragen mit korrekten Antworten auf Deutsch für ein Quizspiel."
+            content: "Erstelle 5 verschiedene Trivia-Fragen mit korrekten Antworten auf Deutsch für ein Quizspiel."
             }
         ]
         });
