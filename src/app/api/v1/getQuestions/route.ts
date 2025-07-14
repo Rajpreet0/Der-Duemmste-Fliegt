@@ -6,8 +6,12 @@ const client = new OpenAI({
 });
 
 
-export async function POST() {
+export async function POST(req: Request) {
     try {
+
+        const body = await req.json();
+        const category = body.category ?? "Allgemeinwissen";
+
         const completion = await client.chat.completions.create({
         model: "gpt-4",
         tools: [
@@ -51,7 +55,7 @@ export async function POST() {
             },
             {
             role: "user",
-            content: "Erstelle 5 verschiedene Trivia-Fragen mit korrekten Antworten auf Deutsch für ein Quizspiel."
+            content: `Erstelle 5 verschiedene Trivia-Fragen mit korrekten Antworten auf Deutsch für ein Quizspiel in der Kategorie ${category}.`
             }
         ]
         });
@@ -61,9 +65,6 @@ export async function POST() {
         if (responseMessage.tool_calls && responseMessage.tool_calls[0].function.arguments) {
             const parsed = JSON.parse(responseMessage.tool_calls[0].function.arguments);
 
-           /* const filePath = path.join(process.cwd(), 'public', 'sessionQuestions.json');
-            await writeFile(filePath, JSON.stringify(parsed.questions, null, 2), 'utf-8'); */
-            
             return NextResponse.json({ questions: parsed.questions });
         } else {
             return new NextResponse("Keine Fragen erhalten", { status: 500 });

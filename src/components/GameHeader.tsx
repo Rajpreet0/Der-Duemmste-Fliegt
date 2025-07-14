@@ -13,9 +13,21 @@ interface GameHeaderProps {
   onSave?: (timer: number, lives: number) => void;
   powerUpsEnabled?: boolean;
   setPowerUpsEnabled?: (enabled: boolean) => void;
+  selectedCategory?: string;
+  setSelectedCategory?: (category: string) => void;
 }
 
-const GameHeader: React.FC<GameHeaderProps> = ({isSetup, currentPlayer, currentPlayerLives, onSkip, onSave, powerUpsEnabled, setPowerUpsEnabled}) => {
+const GameHeader: React.FC<GameHeaderProps> = ({
+    isSetup, 
+    currentPlayer, 
+    currentPlayerLives, 
+    onSkip, 
+    onSave, 
+    powerUpsEnabled, 
+    setPowerUpsEnabled, 
+    selectedCategory, 
+    setSelectedCategory}) => {
+      
   return (
     <div className="w-full flex flex-row items-center justify-between p-2">
       <Link href="/">
@@ -51,7 +63,9 @@ const GameHeader: React.FC<GameHeaderProps> = ({isSetup, currentPlayer, currentP
               isGame={!isSetup} 
               onSave={onSave}
               powerUpsEnabled={powerUpsEnabled}
-              setPowerUpsEnabled={setPowerUpsEnabled}>
+              setPowerUpsEnabled={setPowerUpsEnabled}
+              selectedCategory={selectedCategory}
+              setSelectedCategory={setSelectedCategory}>
               <div className="bg-blue p-2 rounded-full text-white cursor-pointer hover:scale-105 transition-all">
                 <Settings/>
               </div>
