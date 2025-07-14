@@ -30,15 +30,30 @@ const Game = () => {
       joker: boolean
     }[]>([]);
 
+    const [selectedCategory, setSelectedCategory] = useState("Allgemeinwissen");
+
     const [countdownPaused, setCountdownPaused] = useState(false);
 
-    // Get Players Name from URI
+    const fetchQuestions = async (category: string) => {
+        try {
+          const res = await fetch('/api/v1/getQuestions', { method: 'POST', headers: { 'Content-Type': 'application/json'}, body: JSON.stringify({category})});
+          if (!res.ok) throw new Error('Fehler beim Abrufen der Fragen');
+          const data = await res.json();
+          setSessionQuestions(data.questions);
+          setIsLoading(false);
+        } catch (error) {
+          console.error(error);
+        }
+    };
+
+    // Get Players Name from URI & Fetch Questions
     useEffect(() => {
       const searchParams = new URLSearchParams(window.location.search);
       const playersParam = searchParams.get("players");
       const timerParam = searchParams.get("timer");
       const livesParam = searchParams.get("lives");
       const powerUpsParam = searchParams.get("powerUps");
+      const categoryParam = searchParams.get("category");
 
       const parsedTimer = timerParam ? parseInt(timerParam) : 15;
       const parsedLives = livesParam ? parseInt(livesParam) : 3;
@@ -59,24 +74,17 @@ const Game = () => {
           }))
         );
       }
+      
+
+      if (categoryParam) {
+        setSelectedCategory(categoryParam);
+        fetchQuestions(categoryParam);
+      } else {
+        fetchQuestions("Allgemeinwissen");
+      }
+
     }, []);
 
-    // Fetch Questions on Start
-    useEffect(() => {
-      const fetchQuestionsForSession = async () => {
-        try {
-          const res = await fetch('/api/v1/getQuestions', { method: 'POST' });
-          if (!res.ok) throw new Error('Fehler beim Abrufen der Fragen');
-          const data = await res.json();
-          setSessionQuestions(data.questions);
-          setIsLoading(false);
-        } catch (error) {
-          console.error(error);
-        }
-      };
-
-      fetchQuestionsForSession();
-    }, []);
 
     // Timer
     useEffect(() => {
@@ -144,7 +152,7 @@ const Game = () => {
 
     const fetchNewQuestions = async () => {
       try {
-          const res = await fetch('/api/v1/getQuestions', { method: 'POST' });
+          const res = await fetch('/api/v1/getQuestions', { method: 'POST', headers: { 'Content-Type': 'application/json'}, body: JSON.stringify({category: selectedCategory}) });
           if (!res.ok) throw new Error('Fehler beim Abrufen der Fragen');
           const data = await res.json();
           setSessionQuestions(data.questions);
@@ -243,7 +251,9 @@ const Game = () => {
           setInitialTimer(timer);
         }}
         powerUpsEnabled={powerUpsEnabled}
-        setPowerUpsEnabled={setPowerUpsEnabled}/>
+        setPowerUpsEnabled={setPowerUpsEnabled}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}/>
 
         {powerUpsEnabled && (
           <PowerUpComponent

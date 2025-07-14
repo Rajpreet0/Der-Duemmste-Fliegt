@@ -17,15 +17,24 @@ interface SettingsPopoverProps {
     onSave?: (timer: number, lives: number) => void;
     powerUpsEnabled?: boolean;
     setPowerUpsEnabled?: (enabled: boolean) => void;
+    selectedCategory?: string;
+    setSelectedCategory?: (category: string) => void;
 }
 
-const SettingsPopover: React.FC<SettingsPopoverProps> = ({children, isGame, onSave, powerUpsEnabled, setPowerUpsEnabled}) => {
+const SettingsPopover: React.FC<SettingsPopoverProps> = ({
+    children, 
+    isGame, 
+    onSave, 
+    powerUpsEnabled, 
+    setPowerUpsEnabled,
+    selectedCategory,
+    setSelectedCategory}) => {
     const [timerValue, setTimerValue] = useState(15);
     const [livesValue, setLivesValue] = useState(3);
     const router = useRouter();
     
     const categories = ["Allgemeinwissen", "Sport", "Wissenschaft", "Geschichte", "Film&Musik"]
-    const [selectedCategory, setSelectedCategory] = useState("Allgemeinwissen");
+    
 
     const difficulty = ["Leicht", "Medium", "Hard"]
     const [selectedDiffculty, setSelectedDiffculty] = useState("Medium");
@@ -101,7 +110,7 @@ const SettingsPopover: React.FC<SettingsPopoverProps> = ({children, isGame, onSa
                                 {categories.map((category) => (
                                     <DropdownMenuItem
                                         key={category}
-                                        onClick={() => setSelectedCategory(category)}
+                                        onClick={() => setSelectedCategory?.(category)}
                                         className={selectedCategory === category ? "bg-blue text-white" : ""}>
                                             {category}
                                     </DropdownMenuItem>

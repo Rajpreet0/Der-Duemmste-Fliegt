@@ -14,6 +14,7 @@ const Setup = () => {
     const [timer, setTimer] = useState(15);
     const [lives, setLives] = useState(3);
     const [powerUpsEnabled, setPowerUpsEnabled] = useState(false);
+    const [selectedCategory, setSelectedCategory] = useState("Allgemeinwissen");
 
     const router = useRouter();
 
@@ -52,7 +53,7 @@ const Setup = () => {
             return;
         }
 
-       router.push(`/game?players=${encodeURIComponent(JSON.stringify(filledNames))}&timer=${timer}&lives=${lives}&powerUps=${powerUpsEnabled}`);
+       router.push(`/game?players=${encodeURIComponent(JSON.stringify(filledNames))}&timer=${timer}&lives=${lives}&powerUps=${powerUpsEnabled}&category=${selectedCategory}`);
     }
 
   return (
@@ -65,6 +66,8 @@ const Setup = () => {
             }}
             powerUpsEnabled={powerUpsEnabled}
             setPowerUpsEnabled={setPowerUpsEnabled}
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
         />
         <div className="flex-1 flex flex-col items-center justify-center">
             {step === 1 && (
