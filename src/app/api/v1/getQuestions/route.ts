@@ -14,6 +14,7 @@ export async function POST(req: Request) {
 
         const completion = await client.chat.completions.create({
         model: "gpt-4",
+        temperature: 1,
         tools: [
             {
             type: "function",

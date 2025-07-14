@@ -3,13 +3,10 @@
 import WinnerResult from "@/components/WinnerResult";
 import { Suspense } from "react";
 
-const Result = () => {
-
-  return (
-    <Suspense fallback={<p>Loading...</p>}>
-        <WinnerResult/>;
+export default function ResultPage() {
+  return(
+    <Suspense fallback="Loading...">
+        <WinnerResult />
     </Suspense>
-  ) 
+  ) ;
 }
-
-export default Result
