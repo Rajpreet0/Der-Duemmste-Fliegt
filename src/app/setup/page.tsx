@@ -16,6 +16,7 @@ const SetupPage = () => {
   const [lives, setLives] = useState(3);
   const [powerUpsEnabled, setPowerUpsEnabled] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("Allgemeinwissen");
+  const [selectedDifficulty, setSelectedDifficulty] = useState("Medium");
 
   const router = useRouter();
 
@@ -40,7 +41,7 @@ const SetupPage = () => {
       return;
     }
 
-    router.push(`/game?players=${encodeURIComponent(JSON.stringify(playerNames))}&timer=${timer}&lives=${lives}&powerUps=${powerUpsEnabled}&category=${selectedCategory}`);
+    router.push(`/game?players=${encodeURIComponent(JSON.stringify(playerNames))}&timer=${timer}&lives=${lives}&powerUps=${powerUpsEnabled}&category=${selectedCategory}&difficulty=${selectedDifficulty}`);
   };
 
   return (
@@ -55,6 +56,8 @@ const SetupPage = () => {
         setPowerUpsEnabled={setPowerUpsEnabled}
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
+        selectedDifficulty={selectedDifficulty}
+        setSelectedDifficulty={setSelectedDifficulty}
       />
       <div className="flex-1 flex flex-col items-center justify-center">
         {step === 1 && (

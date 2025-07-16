@@ -19,6 +19,8 @@ interface SettingsPopoverProps {
     setPowerUpsEnabled?: (enabled: boolean) => void;
     selectedCategory?: string;
     setSelectedCategory?: (category: string) => void;
+    selectedDifficulty?: string;
+    setSelectedDifficulty?: (difficult: string) => void;
 }
 
 const SettingsPopover: React.FC<SettingsPopoverProps> = ({
@@ -28,16 +30,17 @@ const SettingsPopover: React.FC<SettingsPopoverProps> = ({
     powerUpsEnabled, 
     setPowerUpsEnabled,
     selectedCategory,
-    setSelectedCategory}) => {
+    setSelectedCategory,
+    selectedDifficulty,
+    setSelectedDifficulty}) => {
+
     const [timerValue, setTimerValue] = useState(15);
     const [livesValue, setLivesValue] = useState(3);
     const router = useRouter();
     
     const categories = ["Allgemeinwissen", "Sport", "Wissenschaft", "Geschichte", "Film&Musik"]
     
-
-    const difficulty = ["Leicht", "Medium", "Hard"]
-    const [selectedDiffculty, setSelectedDiffculty] = useState("Medium");
+    const difficulty = ["Leicht", "Medium", "Hard", "Very Hard"];
 
     const modus = ["Klassisch", "Quiz", "Level-Up", "Knockdown"];
     const [selectedModus, setSelectedModus] = useState("Quiz");
@@ -129,14 +132,14 @@ const SettingsPopover: React.FC<SettingsPopoverProps> = ({
                             <DropdownMenuTrigger asChild>
                                 <button
                                     className="p-2 bg-blue text-white rounded-md cursor-pointer  tracking-wider"
-                                >{selectedDiffculty}</button>
+                                >{selectedDifficulty}</button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent className="w-56">
                                 {difficulty.map((diffcult) => (
                                     <DropdownMenuItem
                                         key={diffcult}
-                                        onClick={() => setSelectedDiffculty(diffcult)}
-                                        className={selectedDiffculty === diffcult ? "bg-blue text-white" : ""}>
+                                        onClick={() => setSelectedDifficulty?.(diffcult)}
+                                        className={selectedDifficulty === diffcult ? "bg-blue text-white" : ""}>
                                             {diffcult}
                                     </DropdownMenuItem>
                                 ))}

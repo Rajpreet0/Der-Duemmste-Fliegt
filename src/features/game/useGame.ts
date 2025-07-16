@@ -13,6 +13,7 @@ export function useGame(initialState: Partial<GameState> = {}) {
         initialTimer: 15,
         secondsLeft: 15,
         selectedCategory: "Allgemeinwissen",
+        selectedDifficulty: "Medium",
         powerUpsEnabled: false,
         showAnswer: false,
         ...initialState
