@@ -11,6 +11,7 @@ export async function POST(req: Request) {
 
         const body = await req.json();
         const category = body.category ?? "Allgemeinwissen";
+        const difficulty = body.difficulty ?? "Medium";
 
         const completion = await client.chat.completions.create({
         model: "gpt-4",
@@ -56,7 +57,7 @@ export async function POST(req: Request) {
             },
             {
             role: "user",
-            content: `Erstelle 5 verschiedene Trivia-Fragen mit korrekten Antworten auf Deutsch für ein Quizspiel in der Kategorie ${category}.`
+            content: `Erstelle 25 verschiedene Trivia-Fragen mit korrekten Antworten auf Deutsch für ein Quizspiel in der Kategorie ${category} und Schwierigkeitsgrad ${difficulty}.`
             }
         ]
         });

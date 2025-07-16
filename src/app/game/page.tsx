@@ -20,9 +20,9 @@ const GamePage = () => {
 
   const currentQuestion = state.sessionQuestions[state.currentQuestionIndex];
 
-  const fetchQuestions = async (category: string) => {
+  const fetchQuestions = async (category: string, difficulty: string) => {
     try {
-      const data = await getQuestions(category);
+      const data = await getQuestions(category, difficulty);
       setState(prev => ({
         ...prev,
         sessionQuestions: data.questions,
@@ -42,6 +42,7 @@ const GamePage = () => {
     const livesParam = searchParams.get("lives");
     const powerUpsParam = searchParams.get("powerUps");
     const categoryParam = searchParams.get("category") ?? "Allgemeinwissen";
+    const difficultyParam = searchParams.get("difficulty") ?? "Medium";
 
     const parsedTimer = timerParam ? parseInt(timerParam) : 15;
     const parsedLives = livesParam ? parseInt(livesParam) : 3;
@@ -63,11 +64,12 @@ const GamePage = () => {
         initialTimer: parsedTimer,
         secondsLeft: parsedTimer,
         selectedCategory: categoryParam,
+        selectedDifficulty: difficultyParam,
         powerUpsEnabled: powerUpsParam === "true"
       }));
     }
 
-    fetchQuestions(categoryParam);
+    fetchQuestions(categoryParam, difficultyParam);
   }, [setState]);
 
   useEffect(() => {
@@ -98,7 +100,7 @@ const GamePage = () => {
 useEffect(() => {
   if (state.currentQuestionIndex >= state.sessionQuestions.length && state.sessionQuestions.length > 0) {
     toast.info("Alle Fragen verbraucht, lade neue Fragen...");
-    fetchQuestions(state.selectedCategory);
+    fetchQuestions(state.selectedCategory, state.selectedDifficulty);
     // Reset auf die erste Frage:
     setState(prev => ({
       ...prev,

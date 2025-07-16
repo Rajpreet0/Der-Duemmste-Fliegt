@@ -15,6 +15,8 @@ interface GameHeaderProps {
   setPowerUpsEnabled?: (enabled: boolean) => void;
   selectedCategory?: string;
   setSelectedCategory?: (category: string) => void;
+  selectedDifficulty?: string;
+  setSelectedDifficulty?: (difficult: string) => void;
 }
 
 const GameHeader: React.FC<GameHeaderProps> = ({
@@ -26,7 +28,9 @@ const GameHeader: React.FC<GameHeaderProps> = ({
     powerUpsEnabled, 
     setPowerUpsEnabled, 
     selectedCategory, 
-    setSelectedCategory}) => {
+    setSelectedCategory,
+    selectedDifficulty,
+   setSelectedDifficulty}) => {
       
   return (
     <div className="w-full flex flex-row items-center justify-between p-2">
@@ -65,7 +69,9 @@ const GameHeader: React.FC<GameHeaderProps> = ({
               powerUpsEnabled={powerUpsEnabled}
               setPowerUpsEnabled={setPowerUpsEnabled}
               selectedCategory={selectedCategory}
-              setSelectedCategory={setSelectedCategory}>
+              setSelectedCategory={setSelectedCategory}
+              selectedDifficulty={selectedDifficulty}
+              setSelectedDifficulty={setSelectedDifficulty}>
               <div className="bg-blue p-2 rounded-full text-white cursor-pointer hover:scale-105 transition-all">
                 <Settings/>
               </div>

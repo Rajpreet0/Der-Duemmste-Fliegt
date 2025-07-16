@@ -19,6 +19,7 @@ export interface GameState {
     initialTimer: number;
     secondsLeft: number;
     selectedCategory: string;
+    selectedDifficulty: string;
     powerUpsEnabled: boolean;
     showAnswer: boolean;
 }
